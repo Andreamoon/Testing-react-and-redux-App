@@ -41,4 +41,32 @@ test("counter display start 0", () => {
   const count = findByTestAttribute(wrapper, "count").text();
   expect(count).toBe("0");
 });
-test("clicking button increments counter display", () => {});
+test("clicking button increments counter display", () => {
+  const wrapper = setup();
+
+  //FIND THE BUTTON
+  const button = findByTestAttribute(wrapper, "increment-button");
+  //CLICK THE BUTTON
+  button.simulate("click");
+
+  //FIND THE DISPLAY, AND TEST THAT THE NUMBER IS INCREMENTED
+  const count = findByTestAttribute(wrapper, "count").text();
+  expect(count).toBe("1");
+});
+
+test("clicking the decrement button counter decrement if > 0", () => {
+  const wrapper = setup();
+
+  //FIND THE BUTTON
+  const button = findByTestAttribute(wrapper, "decrement-button");
+
+  //FIND THE DISPLAY, AND TEST THAT THE NUMBER IS INCREMENTED
+  const count = findByTestAttribute(wrapper, "count").text();
+  //CLICK THE BUTTON
+  button.simulate("click");
+
+  const displayMsg = findByTestAttribute(wrapper, "display-msg").text();
+
+  expect(displayMsg).toBe("Counter must be plus than 0");
+  expect(count).toBe("0");
+});
