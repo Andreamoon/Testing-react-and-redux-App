@@ -1,11 +1,18 @@
 import React from "react";
+import "./app.css";
 
 export function App() {
-
+  const [count, setCount] = React.useState(0);
 
   return (
-    <div className="App">
-      <h4>Hello from App</h4>
+    <div data-test="component-app" className="App">
+      <h1 data-test="counter-display">
+        The counter is currently&nbsp;
+        <span data-test="count">{count}</span>
+      </h1>
+      <button data-test="increment-button" onClick={() => setCount(count + 1)}>
+        Increment counter
+      </button>
     </div>
   );
 }
